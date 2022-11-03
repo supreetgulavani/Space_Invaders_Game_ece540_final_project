@@ -1,4 +1,4 @@
-# Space Invader
+# Space Invaders
 ## A game implemented on RVFPGA
 
 ## ECE540 Final Project
