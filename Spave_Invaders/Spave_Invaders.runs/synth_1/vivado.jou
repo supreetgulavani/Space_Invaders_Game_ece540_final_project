@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Nov 12 13:56:58 2022
+# Process ID: 8656
+# Current directory: N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1
+# Command line: vivado.exe -log rvfpganexys.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source rvfpganexys.tcl
+# Log file: N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1/rvfpganexys.vds
+# Journal file: N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source rvfpganexys.tcl -notrace
