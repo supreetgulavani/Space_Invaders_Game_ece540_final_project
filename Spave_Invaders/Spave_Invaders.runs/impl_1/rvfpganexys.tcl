@@ -70,13 +70,16 @@ set rc [catch {
   set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir {N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/wt} [current_project]
-  set_property parent.project_path {N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.xpr} [current_project]
-  set_property ip_output_repo {{N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/ip}} [current_project]
+  set_property webtalk.parent_dir N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/wt [current_project]
+  set_property parent.project_path N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.xpr [current_project]
+  set_property ip_output_repo N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet {{N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1/rvfpganexys.dcp}}
-  read_xdc {{N:/FPGA_540/Final Project/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc}}
-  read_xdc {{N:/FPGA_540/Final Project/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc}}
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+  add_files -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1/rvfpganexys.dcp
+  read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+  read_xdc N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc
+  read_xdc N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc
   link_design -top rvfpganexys -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]
@@ -172,6 +175,7 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   catch { write_mem_info -force rvfpganexys.mmi }
   write_bitstream -force rvfpganexys.bit 
   catch {write_debug_probes -quiet -force rvfpganexys}

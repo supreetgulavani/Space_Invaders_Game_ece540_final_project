@@ -80,6 +80,12 @@ module swervolf_core
     inout wire [31:0]  io_data,
     output wire [ 7          :0] AN,
     output wire [ 6          :0] Digits_Bits,
+    output wire[3:0]   vga_r,
+    output wire[3:0]   vga_g,
+    output wire[3:0]   vga_b,
+    output wire        HSYNC,
+    output wire        VSYNC,
+    input wire         vga_clk,
     output wire        o_accel_sclk,
     output wire        o_accel_cs_n,
     output wire        o_accel_mosi,
@@ -353,7 +359,30 @@ module swervolf_core
         .ext_pad_o     (o_gpio[31:0]),
         .ext_padoe_o   (en_gpio));
 
+   vga_driver vga(
+  //Wishbone signals
+        .wb_clk_i(clk),
+        .wb_rst_i(wb_rst),
+        .wb_cyc_i(wb_m2s_vga_cyc),
+        .wb_adr_i(wb_m2s_vga_adr),
+        .wb_we_i(wb_m2s_vga_we),
+        .wb_stb_i(wb_m2s_vga_stb),
+        .wb_dat_i(wb_m2s_vga_dat),
+        .wb_sel_i(wb_m2s_vga_sel),
+        .wb_dat_o(wb_s2m_vga_dat),
+        .wb_ack_o(wb_s2m_vga_ack),
+       
+    	
+        // VGA clock and outputs
+        .reset(1'b0),
+        .vga_clk(vga_clk),
+        .vga_r(vga_r), 
+        .vga_g(vga_g), 
+        .vga_b(vga_b),
+        .vga_vs(VSYNC), 
+        .vga_hs(HSYNC)
 
+    );
 
    // PTC
    wire        ptc_irq;

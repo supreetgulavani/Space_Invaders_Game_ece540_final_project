@@ -49,6 +49,11 @@ module rvfpganexys
     output reg [15:0]  o_led,
     output reg [7:0]   AN,
     output reg         CA, CB, CC, CD, CE, CF, CG,
+    output wire[3:0]   vga_r,
+    output wire[3:0]   vga_g,
+    output wire[3:0]   vga_b,
+    output wire        HSYNC,
+    output wire        VSYNC,
     output wire        o_accel_cs_n,
     output wire        o_accel_mosi,
     input wire         i_accel_miso,
@@ -67,12 +72,25 @@ module rvfpganexys
    wire 	 rst_core;
    wire 	 user_clk;
    wire 	 user_rst;
+   
+   
 
    clk_gen_nexys clk_gen
      (.i_clk (user_clk),
       .i_rst (user_rst),
       .o_clk_core (clk_core),
       .o_rst_core (rst_core));
+      
+   wire vga_clk; 
+      
+   clk_wiz_0 instance_name
+   (
+    // Clock out ports
+    .clk_31_5(vga_clk),     // output clk_31_5
+    // Status and control signals
+    .reset(rst_core), // input reset
+   // Clock in ports
+    .clk_in1(clk));    
 
    AXI_BUS #(32, 64, 6, 1) mem();
    AXI_BUS #(32, 64, 6, 1) cpu();
@@ -257,6 +275,12 @@ module rvfpganexys
       .io_data        ({i_sw[15:0],gpio_out[15:0]}),
       .AN (AN),
       .Digits_Bits ({CA,CB,CC,CD,CE,CF,CG}),
+      .vga_r       (vga_r),
+      .vga_g       (vga_g),
+      .vga_b       (vga_b),
+      .HSYNC       (HSYNC),
+      .VSYNC       (VSYNC),
+      .vga_clk     (vga_clk),
       .o_accel_sclk   (accel_sclk),
       .o_accel_cs_n   (o_accel_cs_n),
       .o_accel_mosi   (o_accel_mosi),
