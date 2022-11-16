@@ -245,6 +245,7 @@ module rvfpgasim
       .o_ram_rready        (ram_rready),
       .i_ram_init_done     (1'b1),
       .i_ram_init_error    (1'b0),
-      .io_data             ({i_sw,16'bz}));
+      .io_data             ({i_sw,16'bz}),
+      .io_data_push_btn    ({temp, 5'b11010}));
 
 endmodule
