@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
 // Date        : Sat Nov 12 18:42:36 2022
 // Host        : DESKTOP-87O68R1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top blk_mem_gen_0 -prefix
+//               blk_mem_gen_0_ blk_mem_gen_0_stub.v
 // Design      : blk_mem_gen_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

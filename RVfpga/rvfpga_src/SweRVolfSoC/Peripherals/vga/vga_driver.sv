@@ -45,21 +45,21 @@ module vga_driver(
     );
 
 wire video_on = 1'b1;    
-wire [11:0] row,column;
+wire [11:0] row,column ;
 wire [31:0]pix_location;
 wire [7:0]v_dat;
+wire [7:0] v2_dat;
 
 logic wea;
 logic [18:0] present_loc;
 logic [18:0] past_loc;
 logic [18:0] addra;
 logic [7:0] pix_dat;
+logic [1:0] mode_change;
     
 dtg VGA_timing(
 	.clock(vga_clk), 
 	.rst(reset),
-	.horiz_sync(vga_hs), 
-	.vert_sync(vga_vs), 
 	.video_on(video_on),		
 	.pixel_row(row), 
 	.pixel_column(column),
@@ -69,7 +69,7 @@ dtg VGA_timing(
     );
 
 
-blk_mem_gen_0 your_instance_name (
+blk_mem_gen_0 vga_img_mem_0 (
   .clka(wb_clk_i),    // input wire clka
   .wea(wea),      // input wire [0 : 0] wea
   .addra(addra),  // input wire [18 : 0] addra
@@ -79,26 +79,40 @@ blk_mem_gen_0 your_instance_name (
   .doutb(v_dat)  // output wire [7 : 0] doutb
 );
 
+blk_mem_gen_1 vga_img_mem_1 (
+  .clka(vga_clk),    // input wire clka
+  .wea(1'b0),      // input wire [0 : 0] wea
+  .addra(19'b0),  // input wire [18 : 0] addra
+  .dina(7'b0),    // input wire [7 : 0] dina
+  .clkb(vga_clk),    // input wire clkb
+  .addrb(pix_location),  // input wire [18 : 0] addrb
+  .doutb(v2_dat)  // output wire [7 : 0] doutb
+);
+
 always_ff @(posedge vga_clk) begin
 
     if(video_on == 1'b1)begin
-        
-        vga_r <= {1'b0,v_dat[2:0]};
-        vga_g <= {1'b0,v_dat[5:3]};
-        vga_b <= {2'b0,v_dat[7:6]};
-        
+        if (mode_change == 2'b01) begin
+            vga_r <= {1'b0,v_dat[2:0]};
+            vga_g <= {1'b0,v_dat[5:3]};
+            vga_b <= {2'b0,v_dat[7:6]};
         end
-
-
+                vga_r <= v2_dat[3:0];
+                vga_g <= v2_dat[3:0];
+                vga_b <= v2_dat[3:0];
+        end
+        else begin
+            vga_r <= 4'b0000;
+            vga_g <= 4'b0000;
+            vga_b <= 4'b0000;
+            end
 end
-
-
 
 
 reg ack;
 
 
-always @(posedge wb_clk_i,posedge wb_rst_i)
+always_ff @(posedge wb_clk_i, posedge wb_rst_i)
 begin
 
     if(wb_rst_i)
@@ -113,24 +127,26 @@ begin
 
 else begin
     if(wb_we_i) begin
-    
          case (wb_adr_i[5:2])
-             1:begin   
-             
-                if(wb_sel_i[0]) wea <= wb_dat_i[0];
-                
+           /* 0: begin
+                if(wb_sel_i[0]) begin
+                    mode_change = 2'b00;
+                    end
+                    end
+                    */
+             0:begin   
+                if(wb_sel_i[0]) begin
+                     wea <= wb_dat_i[0];
+                     mode_change = 2'b01;
+                     end
              end
              2:begin
-              
               if(wb_sel_i[0]) addra[7:0] <= wb_dat_i[7:0];
               if(wb_sel_i[1]) addra[15:8] <= wb_dat_i[15:8];
               if(wb_sel_i[2]) addra[18:16] <= wb_dat_i[18:16];  
-             
              end
              3:begin
-             
              if(wb_sel_i[0]) pix_dat <= wb_dat_i[7:0];
-             
              end
           endcase
         end

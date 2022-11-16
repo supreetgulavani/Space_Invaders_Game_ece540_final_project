@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
 // Date        : Sat Nov 12 18:42:36 2022
 // Host        : DESKTOP-87O68R1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top blk_mem_gen_0 -prefix
+//               blk_mem_gen_0_ blk_mem_gen_0_sim_netlist.v
 // Design      : blk_mem_gen_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -200,7 +200,6 @@ module blk_mem_gen_0
         .web(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module blk_mem_gen_0_blk_mem_gen_generic_cstr
    (doutb,
     addrb,
@@ -3630,7 +3629,6 @@ module blk_mem_gen_0_blk_mem_gen_mux__parameterized0
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module blk_mem_gen_0_blk_mem_gen_prim_width
    (doutb_array,
     clka,
@@ -6848,7 +6846,6 @@ module blk_mem_gen_0_blk_mem_gen_prim_width__parameterized9
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper_init" *) 
 module blk_mem_gen_0_blk_mem_gen_prim_wrapper_init
    (doutb_array,
     clka,
@@ -27705,7 +27702,6 @@ module blk_mem_gen_0_blk_mem_gen_prim_wrapper_init__parameterized9
         .O(enb_array));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module blk_mem_gen_0_blk_mem_gen_top
    (doutb,
     addrb,
@@ -27765,7 +27761,7 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "307200" *) 
 (* C_WRITE_DEPTH_B = "307200" *) (* C_WRITE_MODE_A = "NO_CHANGE" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "8" *) (* C_WRITE_WIDTH_B = "8" *) (* C_XDEVICEFAMILY = "artix7" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_4" *) (* downgradeipidentifiedwarnings = "yes" *) 
+(* downgradeipidentifiedwarnings = "yes" *) 
 module blk_mem_gen_0_blk_mem_gen_v8_4_4
    (clka,
     rsta,
@@ -27993,7 +27989,6 @@ module blk_mem_gen_0_blk_mem_gen_v8_4_4
         .wea(wea));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_4_synth" *) 
 module blk_mem_gen_0_blk_mem_gen_v8_4_4_synth
    (doutb,
     addrb,

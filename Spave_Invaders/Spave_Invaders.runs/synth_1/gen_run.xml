@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1668390514">
-  <File Type="PA-TCL" Name="rvfpganexys.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="rvfpganexys_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="rvfpganexys_reports.tcl"/>
-  <File Type="RDS-RDS" Name="rvfpganexys.vds"/>
-  <File Type="RDS-UTIL" Name="rvfpganexys_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="rvfpganexys_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="rvfpganexys.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="rvfpganexys_timing_summary_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1668588266">
   <File Type="VDS-TIMING-PB" Name="rvfpganexys_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="rvfpganexys_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="rvfpganexys.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="rvfpganexys_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="rvfpganexys_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="rvfpganexys_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="rvfpganexys.vds"/>
+  <File Type="REPORTS-TCL" Name="rvfpganexys_reports.tcl"/>
+  <File Type="PA-TCL" Name="rvfpganexys.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/../RVfpga/rvfpga_src/SweRVolfSoC/SweRVEh1CoreComplex/include/common_defines.vh">
       <FileInfo>
         <Attr Name="IsGlobalInclude" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -334,13 +341,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../RVfpga/rvfpga_src/SweRVolfSoC/Interconnect/AxiInterconnect/pulp-platform.org__axi_0.25.0/include/axi/assign.svh">
+    <File Path="$PPRDIR/../RVfpga/rvfpga_src/SweRVolfSoC/Interconnect/AxiInterconnect/pulp-platform.org__axi_0.25.0/include/axi/typedef.svh">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../RVfpga/rvfpga_src/SweRVolfSoC/Interconnect/AxiInterconnect/pulp-platform.org__axi_0.25.0/include/axi/typedef.svh">
+    <File Path="$PPRDIR/../RVfpga/rvfpga_src/SweRVolfSoC/Interconnect/AxiInterconnect/pulp-platform.org__axi_0.25.0/include/axi/assign.svh">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -1565,6 +1572,12 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../../game_over.coe.coe">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
       <Option Name="TopModule" Val="rvfpganexys"/>
@@ -1598,6 +1611,6 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
 </GenRun>

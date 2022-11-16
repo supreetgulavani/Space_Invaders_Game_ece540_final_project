@@ -65,21 +65,22 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 4
+  set_param chipscope.maxJobs 1
   create_project -in_memory -part xc7a100tcsg324-1
   set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/wt [current_project]
-  set_property parent.project_path N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.xpr [current_project]
-  set_property ip_output_repo N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/wt [current_project]
+  set_property parent.project_path /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.xpr [current_project]
+  set_property ip_output_repo /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-  add_files -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1/rvfpganexys.dcp
-  read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-  read_xdc N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc
-  read_xdc N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc
+  add_files -quiet /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/synth_1/rvfpganexys.dcp
+  read_ip -quiet /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci
+  read_ip -quiet /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_ip -quiet /home/atharva/ece540_supreet/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+  read_xdc /home/atharva/ece540_supreet/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc
+  read_xdc /home/atharva/ece540_supreet/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc
   link_design -top rvfpganexys -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]
