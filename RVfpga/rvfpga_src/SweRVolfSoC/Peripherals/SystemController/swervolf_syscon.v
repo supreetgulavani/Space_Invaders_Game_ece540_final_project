@@ -362,7 +362,7 @@ module SevSegDisplays_Controller(
   );
 
 
-  wire [ 7:0] [3:0] digits_concat;
+  wire [ 7:0] [7:0] digits_concat;
 
   assign digits_concat[0] = Segments_Digit0;
   assign digits_concat[1] = Segments_Digit1;
@@ -375,7 +375,7 @@ module SevSegDisplays_Controller(
 
   SevSegMux
   #(
-    .DATA_WIDTH(4),
+    .DATA_WIDTH(8),
     .N_IN(8)
   )
   Select_Digits
