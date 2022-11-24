@@ -46,7 +46,6 @@ static void game_update_score(void)
 // Game Over Screen
 static void game_over_display_screen(void)
 {
-    wchar_t game_over[] = L"GAME OVER!";
     
     // use hagl?
 }
