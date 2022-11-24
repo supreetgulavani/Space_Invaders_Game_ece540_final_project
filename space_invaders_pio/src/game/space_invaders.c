@@ -6,7 +6,7 @@
 #include "device/seven_seg.h"
 #include "device/timer.h"
 
-#include "utils/printf.h"
+
 
 // Global Variables
 volatile uint8_t game_render = 0;
@@ -22,7 +22,7 @@ static s08_t enemy_shot;
 static space_invaders_t game_state = SPACE_INVADERS_INIT;
 
 static char msg[10];
-wchar_t final_score[20];
+
 
 // Static Functions
 

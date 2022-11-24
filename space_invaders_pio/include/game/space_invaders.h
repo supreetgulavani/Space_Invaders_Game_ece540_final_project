@@ -11,7 +11,7 @@
 #define SHIP_POSITION 320;
 #define SCORE_BOARD 620;
 
-
+/*
 // Game States
 typedef enum{
     SPACE_INVADERS_INIT,
@@ -23,6 +23,8 @@ typedef enum{
     SPACE_INVADERS_RESTART,
     SPACE_INVADERS_LAST = 100
 } space_invaders_t;
+/
+*/
 
 // 2D co-ordinates
 typedef struct{
@@ -32,7 +34,6 @@ typedef struct{
 
 // Variables
 extern uint8_t game_start;
-extern wchar_t final_score[];
 
 // Functions
 void space_invaders_init(void);
