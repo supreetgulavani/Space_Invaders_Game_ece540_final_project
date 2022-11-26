@@ -7,9 +7,17 @@
 #include "psp_types.h"
 #include <stdint.h>
 
-// Defines
-#define SHIP_POSITION 320;
-#define SCORE_BOARD 620;
+// Defines - Ship
+#define SHIP_POSITION 320
+#define SCORE_BOARD 620
+#define BULLET_HIT 1
+#define BULLET_MISS 2
+#define BULLET_SHOT 3
+
+//Defines - Aliens (single alien coordinates)
+#define ALIEN_X 320
+#define ALIEN_Y (240+2)
+#define MAX_ENEMIES 9
 
 
 // Game States

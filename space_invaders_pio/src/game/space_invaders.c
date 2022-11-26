@@ -2,22 +2,25 @@
 
 #include "game/space_invaders.h"
 #include <stdint.h>
-
 #include "device/seven_seg.h"
 #include "device/timer.h"
-
 
 
 // Global Variables
 volatile uint8_t game_render = 0;
 uint8_t game_start = 0;
+uint8_t button_read = 0;
+uint8_t button_status = 0;
+uint16_t bullet_y = 380;
+uint16_t bullet_x = 330;
+uint8_t status;
 
 // Static Variables
 static coordinates_2D ship_pos;
 static coordinates_2D enemies_pos[];
 
 static uint8_t player_score;
-static s08_t enemy_shot;
+static uint8_t enemy_shot;
 
 static space_invaders_t game_state = SPACE_INVADERS_INIT;
 
@@ -46,7 +49,6 @@ static void game_update_score(void)
 // Game Over Screen
 static void game_over_display_screen(void)
 {
-    
     // use hagl?
 }
 
@@ -72,6 +74,9 @@ void space_invaders_init(void)
 // Game tasks
 void space_invaders_task(void)
 {
+    WRITE_REG(0x80001804,0,0x00000001);
+    WRITE_REG(0x80001500,0,0);
+    status = 0;
     // State Machine
     switch (game_state)
     {
@@ -91,18 +96,77 @@ void space_invaders_task(void)
     case SPACE_INVADERS_GAME_IN_PROGRESS:
         if (game_render){
             game_render = 0;
+            delay_ms(500000);
+            button_read = READ_REG(0x80001500, 0);
+            //bullet miss
+            if((button_read ^ 0x08 ) == 0){
+                button_status = 2;
+             }
+
+            //bullet shot
+            if((button_read ^ 0x02 ) == 0){
+                button_status = 3;
+            }
+
+             //bullet hit 
+            if((button_read ^ 0x10 ) == 0){
+                button_status = 1;
+            }
+
+            if (button_status == 2){
+                ship_pos.x += 5;
+                WRITE_REG(0x80001800,0,coordinate(0,ship_pos.x));
+                button_status = 0;
+            }
+
+            if((button_status == 1) && (status ==0)){
+                status = BULLET_MISS;
+                button_status = 0;
+            }    
+
+            if(status == BULLET_MISS){ 
+            bullet_y -= 5;
+            WRITE_REG(0x80001808,0,coordinate(bullet_y,(ship_pos.x+8)));
+            }
+
+            if(enemy_shot == 0){
             // check for collision
-            
-            // Update Score
+                if (bullet_y <= ALIEN_Y){
+                  if(((ship_pos.x + 8) <= (ALIEN_X + 20)) && (ship_pos.x >= ALIEN_X)){
+                    WRITE_REG(0x80001804,0,0x00000000);
+                    WRITE_REG(0x80001808,0,0x00000000);
+                    status =  0;
+                    bullet_y = 380;
+                    button_status = 0;
+                    enemy_shot = 1;
+                  }
+                  if(enemy_shot == MAX_ENEMIES){
+                    game_state = SPACE_INVADERS_GAME_OVER;
+                }
+            }
+             // Update Score
             player_score++;
             game_update_score();
             game_state = SPACE_INVADERS_GAME_OVER;
+            }
+            else if(bullet_y == 0) {
+                    WRITE_REG(0x80001808,0,0x00000000);
+                    status = 0;
+                    bullet_y = 380;
+                    button_status = 0;
+                }
         }
         break;
     case SPACE_INVADERS_GAME_OVER:
 
-
     default:
         break;
     } 
+}
+
+u32_t coordinate(u16_t high_half_word, u16_t low_half_word)
+{
+   u32_t coordinate_val = 0;
+   coordinate_val = ((high_half_word << 16) | low_half_word);
+    return coordinate_val;
 }

@@ -7,7 +7,7 @@
 
 
 /* Global vars */
-volatile u08_t secflag = 0;
+volatile u08_t ms20flag = 0;
 
 volatile u16_t msec = 0;
 volatile u16_t delay_cnt = 0;
@@ -42,10 +42,10 @@ void timer_isr(void)
 
     /* Render game every GAME_RENDER_MS milliseconds */
     if (game_start){
-    if (msec >= 1000) {
-        msec = 0;
-        secflag = 1;
-    }
+        if (msec >= 1000) {
+            msec = 0;
+            ms20flag = 1;
+        }
     }
 }
 
