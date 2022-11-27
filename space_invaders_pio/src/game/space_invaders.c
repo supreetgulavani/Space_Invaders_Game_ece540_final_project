@@ -83,15 +83,16 @@ void space_invaders_task(void)
     case SPACE_INVADERS_INIT:
         space_invaders_init();
         game_state = SPACE_INVADERS_WAIT_FOR_START;
-        break;
+    break;
     
     case SPACE_INVADERS_WAIT_FOR_START:
-        break;
+        // nothing to do here. wait for the next state
+    break;
     
     case SPACE_INVADERS_START:
         game_start = 1;
         game_state = SPACE_INVADERS_GAME_IN_PROGRESS;
-        break;
+    break;
     
     case SPACE_INVADERS_GAME_IN_PROGRESS:
         if (game_render){
@@ -156,12 +157,38 @@ void space_invaders_task(void)
                     button_status = 0;
                 }
         }
-        break;
+    break;
     case SPACE_INVADERS_GAME_OVER:
+        seven_seg_blank();
+        game_state = SPACE_INVADERS_GAME_OVER_WAIT;
+        break;
+    case SPACE_INVADERS_GAME_OVER_WAIT:
+        if(game_render){
+            game_render = 0;
+            //function call
+        }
+    break;
+    case SPACE_INVADERS_RESTART:
+        display_clear();
+        player_score = 0;
+        game_update_score();
+        game_state = SPACE_INVADERS_WAIT_FOR_START;
+    break;
 
     default:
-        break;
+    break;
     } 
+}
+
+// Update States
+void space_invaders_state_set(space_invaders_t state)
+{
+    game_state = state;
+}
+
+space_invaders_t space_invaders_get_state(void)
+{
+    return game_state;
 }
 
 u32_t coordinate(u16_t high_half_word, u16_t low_half_word)
