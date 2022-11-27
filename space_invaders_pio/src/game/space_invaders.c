@@ -5,6 +5,7 @@
 #include "device/seven_seg.h"
 #include "device/timer.h"
 
+u32_t coordinate(u16_t high_half_word, u16_t low_half_word);
 
 // Global Variables
 volatile uint8_t game_render = 0;
