@@ -36,7 +36,6 @@ static void ship_reset(void)
     ship_pos.y = 430;
 }
 
-
 // Update Score
 static void game_update_score(void)
 {
@@ -52,6 +51,14 @@ static void game_over_display_screen(void)
     // use hagl?
 }
 
+// Enemy position
+void enemy_position(void)
+{
+    // read enemy position init READ_REG();
+    if(/* add delay_ms(10000)*/){
+        // write a new position to ALIEN_X and ALIEN_Y
+    }
+}
 // Final Score Display on Screen
 
 
@@ -97,7 +104,7 @@ void space_invaders_task(void)
     case SPACE_INVADERS_GAME_IN_PROGRESS:
         if (game_render){
             game_render = 0;
-            delay_ms(500000);
+            delay_ms(50000);
             button_read = READ_REG(0x80001500, 0);
             //bullet miss
             if((button_read ^ 0x08 ) == 0){
@@ -169,7 +176,7 @@ void space_invaders_task(void)
         }
     break;
     case SPACE_INVADERS_RESTART:
-        display_clear();
+        //display_clear();
         player_score = 0;
         game_update_score();
         game_state = SPACE_INVADERS_WAIT_FOR_START;
