@@ -50,7 +50,7 @@ void timer_isr(void)
 }
 
 /* Delay in milliseconds */
-void delay_ms(u16_t delay)
+void delay_ms(uint16_t delay)
 {
     delay += delay_cnt ;
 	while (delay != delay_cnt)
