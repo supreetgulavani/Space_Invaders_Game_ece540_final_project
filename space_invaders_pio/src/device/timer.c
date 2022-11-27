@@ -1,4 +1,5 @@
 #include "device/timer.h"
+#include "game/space_invaders.c"
 
 #include "psp_api.h"
 #include "bsp_external_interrupts.h"
@@ -29,7 +30,6 @@ void timer_init(void)
 /* Timer ISR */
 void timer_isr(void)
 {
-    int start = 1;
     /* Re-init with needed values */
     timer_init();
 
@@ -41,7 +41,7 @@ void timer_isr(void)
     delay_cnt++;
 
     /* Render game every GAME_RENDER_MS milliseconds */
-    if (start){
+    if (game_start){
     if (msec >= 1000) {
         msec = 0;
         secflag = 1;
