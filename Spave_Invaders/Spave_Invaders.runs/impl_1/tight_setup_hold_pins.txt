@@ -1,0 +1,19 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|                 clk_core |                 clk_core |                                              swervolf/swerv_eh1/swerv/exu/div_e1/miscf/dffs/dout_reg[1]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[25]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[14]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[10]/D|
+|                 clk_core |                 clk_core |                                                   swervolf/swerv_eh1/swerv/exu/div_e1/runff/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[28]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[18]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[17]/D|
+|                 clk_core |                 clk_core |                              swervolf/swerv_eh1/swerv/ifu/ifc/faddmiss_ff/genblock.dff/dffs/dout_reg[6]/D|
+|                 clk_core |                 clk_core |                            swervolf/swerv_eh1/swerv/dma_ctrl/GenFifo[2].fifo_done_dff/dffsc/dout_reg[0]/D|
+|                 clk_core |                 clk_core |                                   swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[9]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[11]/D|
+|                 clk_core |                 clk_core |                              swervolf/swerv_eh1/swerv/ifu/ifc/faddmiss_ff/genblock.dff/dffs/dout_reg[9]/D|
+|                 clk_core |                 clk_core |                             swervolf/swerv_eh1/swerv/ifu/ifc/faddmiss_ff/genblock.dff/dffs/dout_reg[10]/D|
+|                 clk_core |                 clk_core |                                  swervolf/swerv_eh1/swerv/exu/div_e1/qff/genblock.dff/dffs/dout_reg[30]/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
