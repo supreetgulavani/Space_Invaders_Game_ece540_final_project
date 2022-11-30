@@ -59,7 +59,9 @@ logic [9:0]     reg_ship_x;
 logic [9:0]     reg_ship_bullet_x;
 logic [9:0]     reg_ship_bullet_y;
 logic [3:0]     reg_game_mode;
-logic [15:0]    reg_sprite_display;     
+logic [15:0]    reg_sprite_display;   
+logic [9:0]     reg_alien_bullet_x;
+logic [9:0]     reg_alien_bullet_y; 
 
 logic [9:0]     alien1_x =  10'b0101000000; //320
 logic [9:0]     alien1_y =  10'b0011110000; //240
@@ -123,7 +125,20 @@ logic [3:0] sprite_ship_bullet[4:0][1:0] = '{'{'1,'1},
                                              '{'1,'1},
                                              '{'1,'1},
                                              '{'1,'1},
-                                             '{'1,'1}};                                                                                                                       
+                                             '{'1,'1}};   
+logic[3:0] sprite_alien_bullet[11:0][3:0] = '{'{'0,'1,'1,'1},
+                                              '{'0,'1,'1,'1},
+                                              '{'1,'1,'1,'0},
+                                              '{'1,'1,'1,'0},
+                                              '{'0,'1,'1,'1},
+                                              '{'0,'1,'1,'1},
+                                              '{'1,'1,'1,'0},
+                                              '{'1,'1,'1,'0},
+                                              '{'0,'1,'1,'1},
+                                              '{'0,'1,'1,'1},
+                                              '{'1,'1,'1,'0},
+                                              '{'1,'1,'1,'0}};
+                                                                                                                                                                                                                 
 
 // VGA Timing module    
 dtg VGA_timing(
@@ -208,7 +223,17 @@ always_ff @(posedge vga_clk) begin
                     vga_g <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
                     vga_b <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
 
-            end 
+            end
+          
+          if ((row >= reg_alien_bullet_y) && (row < (reg_alien_bullet_y + 12)) &&
+                (column >= reg_alien_bullet_x) && (column < (reg_alien_bullet_x + 4)))
+
+            begin
+                    vga_r <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+                    vga_g <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+                    vga_b <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+
+            end     
      //end
             
         else begin
@@ -260,6 +285,15 @@ else begin
              if(wb_sel_i[2]) reg_ship_bullet_y[7:0] <= wb_dat_i[23:16];
              if(wb_sel_i[3]) reg_ship_bullet_y[9:8] <= wb_dat_i[25:24]; 
              end
+             
+             3:begin
+             
+             if(wb_sel_i[0]) reg_alien_bullet_x[7:0] <= wb_dat_i[7:0];
+             if(wb_sel_i[1]) reg_alien_bullet_x[9:8] <= wb_dat_i[9:8];
+             if(wb_sel_i[2]) reg_alien_bullet_y[7:0] <= wb_dat_i[23:16];
+             if(wb_sel_i[3]) reg_alien_bullet_y[9:8] <= wb_dat_i[25:24]; 
+             end
+             
           endcase
         end
     ack <= (!ack & wb_stb_i & wb_cyc_i);
