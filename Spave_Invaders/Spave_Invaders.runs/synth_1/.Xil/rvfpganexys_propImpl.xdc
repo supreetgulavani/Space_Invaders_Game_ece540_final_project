@@ -1,5 +1,5 @@
-set_property SRC_FILE_INFO {cfile:N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc rfile:../../../../RVfpga/rvfpga_src/rvfpganexys.xdc id:1} [current_design]
-set_property SRC_FILE_INFO {cfile:N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc rfile:../../../../RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc id:2} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/atharva/ece540_supreet/ece540_final_project/RVfpga/rvfpga_src/rvfpganexys.xdc rfile:../../../../RVfpga/rvfpga_src/rvfpganexys.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/atharva/ece540_supreet/ece540_final_project/RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc rfile:../../../../RVfpga/rvfpga_src/LiteDRAM/liteDRAM.xdc id:2} [current_design]
 set_property src_info {type:XDC file:1 line:12 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN E3    IOSTANDARD LVCMOS33 } [get_ports { clk }];
 set_property src_info {type:XDC file:1 line:14 export:INPUT save:INPUT read:READ} [current_design]

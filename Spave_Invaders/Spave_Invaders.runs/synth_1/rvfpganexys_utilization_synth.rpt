@@ -1,8 +1,8 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Sun Nov 27 13:50:17 2022
-| Host         : DESKTOP-87O68R1 running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+| Date         : Wed Nov 30 17:47:38 2022
+| Host         : msi running 64-bit EndeavourOS Linux
 | Command      : report_utilization -file rvfpganexys_utilization_synth.rpt -pb rvfpganexys_utilization_synth.pb
 | Design       : rvfpganexys
 | Device       : 7a100tcsg324-1
@@ -30,15 +30,15 @@ Table of Contents
 +----------------------------+-------+-------+-----------+-------+
 |          Site Type         |  Used | Fixed | Available | Util% |
 +----------------------------+-------+-------+-----------+-------+
-| Slice LUTs*                | 35151 |     0 |     63400 | 55.44 |
-|   LUT as Logic             | 34856 |     0 |     63400 | 54.98 |
+| Slice LUTs*                | 35126 |     0 |     63400 | 55.40 |
+|   LUT as Logic             | 34831 |     0 |     63400 | 54.94 |
 |   LUT as Memory            |   295 |     0 |     19000 |  1.55 |
 |     LUT as Distributed RAM |   292 |     0 |           |       |
 |     LUT as Shift Register  |     3 |     0 |           |       |
-| Slice Registers            | 19504 |     0 |    126800 | 15.38 |
-|   Register as Flip Flop    | 19504 |     0 |    126800 | 15.38 |
+| Slice Registers            | 19489 |     0 |    126800 | 15.37 |
+|   Register as Flip Flop    | 19489 |     0 |    126800 | 15.37 |
 |   Register as Latch        |     0 |     0 |    126800 |  0.00 |
-| F7 Muxes                   |   508 |     0 |     31700 |  1.60 |
+| F7 Muxes                   |   510 |     0 |     31700 |  1.61 |
 | F8 Muxes                   |    32 |     0 |     15850 |  0.20 |
 +----------------------------+-------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -59,7 +59,7 @@ Table of Contents
 | 54    |          Yes |           - |          Set |
 | 16057 |          Yes |           - |        Reset |
 | 216   |          Yes |         Set |            - |
-| 3177  |          Yes |       Reset |            - |
+| 3162  |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -154,16 +154,16 @@ Table of Contents
 +------------+-------+---------------------+
 |  Ref Name  |  Used | Functional Category |
 +------------+-------+---------------------+
-| LUT6       | 18359 |                 LUT |
+| LUT6       | 18348 |                 LUT |
 | FDCE       | 16057 |        Flop & Latch |
-| LUT5       |  7529 |                 LUT |
-| LUT4       |  5980 |                 LUT |
-| LUT3       |  4963 |                 LUT |
-| FDRE       |  3177 |        Flop & Latch |
-| LUT2       |  2223 |                 LUT |
-| CARRY4     |   876 |          CarryLogic |
-| MUXF7      |   508 |               MuxFx |
-| LUT1       |   503 |                 LUT |
+| LUT5       |  7567 |                 LUT |
+| LUT4       |  5912 |                 LUT |
+| LUT3       |  4998 |                 LUT |
+| FDRE       |  3162 |        Flop & Latch |
+| LUT2       |  2197 |                 LUT |
+| CARRY4     |   866 |          CarryLogic |
+| MUXF7      |   510 |               MuxFx |
+| LUT1       |   500 |                 LUT |
 | RAMD32     |   438 |  Distributed Memory |
 | FDSE       |   216 |        Flop & Latch |
 | RAMS32     |   146 |  Distributed Memory |
@@ -194,12 +194,11 @@ Table of Contents
 8. Black Boxes
 --------------
 
-+---------------+------+
-|    Ref Name   | Used |
-+---------------+------+
-| clk_wiz_0     |    1 |
-| blk_mem_gen_0 |    1 |
-+---------------+------+
++-----------+------+
+|  Ref Name | Used |
++-----------+------+
+| clk_wiz_0 |    1 |
++-----------+------+
 
 
 9. Instantiated Netlists
