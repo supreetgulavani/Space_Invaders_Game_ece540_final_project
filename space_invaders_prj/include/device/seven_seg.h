@@ -26,6 +26,9 @@
 #define SEG7       0xF8
 #define SEG8       0x80
 #define SEG9       0x90
+#define CHAR_u     0x3E
+#define CHAR_m     0x55
+#define CHAR_S     0x6D
 
 // Functions
 void seven_seg_blank(void);

@@ -21,11 +21,12 @@
 #define PTC_CNTRL_INT_ACK_BIT   0x40
 
 /* Global flags */
-extern volatile u08_t ms20flag;
+extern volatile u08_t secflag;
+extern volatile u08_t ms10flag;
 
 /* Functions */
 void timer_init(void);
 void timer_isr(void);
-void delay_ms(u16_t delay);
+void delay_ms(u32_t delay);
 
 #endif
