@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param chipscope.maxJobs 4
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -25,7 +26,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.cache/wt [current_project]
 set_property parent.project_path N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:nexys-a7-100t:part0:1.2 [current_project]
@@ -38,6 +39,8 @@ set_property include_dirs {
 add_files N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/vga/space_invaders.coe
 add_files N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/vga/Pointer.coe.coe
 add_files N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/vga/Pointer.coe.coe.coe
+add_files N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/vga/pic4.coe
+add_files N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/vga/space_invaders_1_bit.coe.coe
 read_verilog {
   N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/SweRVEh1CoreComplex/include/common_defines.vh
   N:/FPGA_540/Final_Project/ece540_final_project/RVfpga/rvfpga_src/SweRVolfSoC/Peripherals/gpio/gpio_defines.v
@@ -173,9 +176,6 @@ read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spa
 set_property used_in_implementation false [get_files -all n:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all n:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all n:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_ooc.xdc]
-
-read_ip -quiet N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all n:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

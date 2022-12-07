@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
--- Date        : Sat Nov 19 19:07:59 2022
+-- Date        : Wed Nov 30 01:26:29 2022
 -- Host        : DESKTOP-87O68R1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top blk_mem_gen_0 -prefix
---               blk_mem_gen_0_ blk_mem_gen_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.vhdl
 -- Design      : blk_mem_gen_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a100tcsg324-1
@@ -16,12 +16,12 @@ entity blk_mem_gen_0 is
   Port ( 
     clka : in STD_LOGIC;
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
-    addra : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    dina : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    dina : in STD_LOGIC_VECTOR ( 0 to 0 );
     clkb : in STD_LOGIC;
     enb : in STD_LOGIC;
-    addrb : in STD_LOGIC_VECTOR ( 5 downto 0 );
-    doutb : out STD_LOGIC_VECTOR ( 3 downto 0 )
+    addrb : in STD_LOGIC_VECTOR ( 18 downto 0 );
+    doutb : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
 
 end blk_mem_gen_0;
@@ -30,7 +30,7 @@ architecture stub of blk_mem_gen_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clka,wea[0:0],addra[5:0],dina[3:0],clkb,enb,addrb[5:0],doutb[3:0]";
+attribute black_box_pad_pin of stub : architecture is "clka,wea[0:0],addra[18:0],dina[0:0],clkb,enb,addrb[18:0],doutb[0:0]";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "blk_mem_gen_v8_4_4,Vivado 2019.2";
 begin

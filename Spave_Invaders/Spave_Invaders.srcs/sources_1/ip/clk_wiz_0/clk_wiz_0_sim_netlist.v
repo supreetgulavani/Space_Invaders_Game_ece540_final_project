@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
 // Date        : Sat Nov 12 15:16:42 2022
 // Host        : DESKTOP-87O68R1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim {n:/FPGA_540/Final
-//               Project/ece540_final_project/Spave_Invaders/Spave_Invaders.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0_sim_netlist.v}
+// Command     : write_verilog -force -mode funcsim -rename_top clk_wiz_0 -prefix
+//               clk_wiz_0_ clk_wiz_0_sim_netlist.v
 // Design      : clk_wiz_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,7 +31,6 @@ module clk_wiz_0
         .reset(reset));
 endmodule
 
-(* ORIG_REF_NAME = "clk_wiz_0_clk_wiz" *) 
 module clk_wiz_0_clk_wiz_0_clk_wiz
    (clk_31_5,
     reset,

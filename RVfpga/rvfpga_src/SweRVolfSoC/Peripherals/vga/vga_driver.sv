@@ -46,12 +46,12 @@ module vga_driver(
 
 wire video_on;    
 wire [11:0] row,column;
-wire [8:0]pix_location;
-wire [3:0]v_dat;
+wire [31:0]pix_location;
+wire v_dat;
 
 logic wea;
 logic [8:0] addra;
-logic [7:0] pix_dat;
+logic [3:0] pix_dat;
 
 reg ack;
 
@@ -66,11 +66,20 @@ logic [9:0]     reg_alien_bullet_y;
 logic [9:0]     alien1_x =  10'b0101000000; //320
 logic [9:0]     alien1_y =  10'b0011110000; //240
 
-logic [9:0]     alien2_x =  10'b0101011110; //350
+logic [9:0]     alien2_x =  10'b0101110010; //370
 logic [9:0]     alien2_y =  10'b0011110000; //240
 
-logic [9:0]     alien3_x =  10'b0100100010; //290
+logic [9:0]     alien3_x =  10'b0100001110; //270
 logic [9:0]     alien3_y =  10'b0011110000; //240
+
+logic [9:0]     alien4_x =  10'b0100001110; //270
+logic [9:0]     alien4_y =  10'b0010111110; //190
+
+logic [9:0]     alien5_x =  10'b0101000000; //320
+logic [9:0]     alien5_y =  10'b0010111110; //190
+
+logic [9:0]     alien6_x =  10'b0101110010; //370
+logic [9:0]     alien6_y =  10'b0010111110; //190
 
 //logic [9:0]     ship_x =  10'b0101000000; //320
 logic [9:0]     ship_y =  10'b0101111100; //380  
@@ -126,6 +135,9 @@ logic [3:0] sprite_ship_bullet[4:0][1:0] = '{'{'1,'1},
                                              '{'1,'1},
                                              '{'1,'1},
                                              '{'1,'1}};   
+                                             
+                                            
+/*                                             
 logic[3:0] sprite_alien_bullet[11:0][3:0] = '{'{'0,'1,'1,'1},
                                               '{'0,'1,'1,'1},
                                               '{'1,'1,'1,'0},
@@ -138,7 +150,7 @@ logic[3:0] sprite_alien_bullet[11:0][3:0] = '{'{'0,'1,'1,'1},
                                               '{'0,'1,'1,'1},
                                               '{'1,'1,'1,'0},
                                               '{'1,'1,'1,'0}};
-                                                                                                                                                                                                                 
+*/                                                                                                                                                                                                                 
 
 // VGA Timing module    
 dtg VGA_timing(
@@ -148,99 +160,140 @@ dtg VGA_timing(
 	.vert_sync(vga_vs), 
 	.video_on(video_on),		
 	.pixel_row(row), 
-	.pixel_column(column)
+	.pixel_column(column),
 	 
+	.pix_num(pix_location) 
     );
 
-
+/*
 blk_mem_gen_0 your_instance_name (
-  .clka(wb_clk_i),    // input wire clka
-  .wea(wea),      // input wire [0 : 0] wea,  // input wire [18 : 0] addra
-  .dina(pix_dat),    // input wire [7 : 0] dina
-  .clkb(wb_clk_i),    // input wire clkb
-  .addrb(pix_location),  // input wire [18 : 0] addrb
+  .clka(vga_clk),    // input wire clka
+  .wea(1'b0),      // input wire [0 : 0] wea,  // input wire [18 : 0] addra
+  .dina(19'b0),    // input wire [7 : 0] dina
+  .clkb(vga_clk),    // input wire clkb
+  .addrb(pix_location[18:0]),  // input wire [18 : 0] addrb
   .doutb(v_dat)  // output wire [7 : 0] doutb
 );
-
+*/
 
 always_ff @(posedge vga_clk) begin
 
     if(video_on == 1'b1)begin
     
-    if(reg_sprite_display[0] == 1) begin
-         if ((row >= alien1_y) && (row < (alien1_y + 20)) &&
-                (column >= alien1_x) && (column < (alien1_x + 20)))
-
-            begin
-                    vga_r <= (sprite_alien[row - alien1_y][column - alien1_x] );
-                    vga_g <= (sprite_alien[row - alien1_y][column - alien1_x] );
-                    vga_b <= (sprite_alien[row - alien1_y][column - alien1_x] );
-
+        
+        if(reg_sprite_display[8] == 0)begin
+            if(reg_sprite_display[0] == 1) begin
+                 if ((row >= alien1_y) && (row < (alien1_y + 20)) &&
+                        (column >= alien1_x) && (column < (alien1_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien1_y][column - alien1_x] );
+                            vga_g <= (sprite_alien[row - alien1_y][column - alien1_x] );
+                            vga_b <= (sprite_alien[row - alien1_y][column - alien1_x] );
+        
+                    end
+             end   
+             
+             if(reg_sprite_display[1] == 1) begin    
+                if ((row >= alien2_y) && (row < (alien2_y + 20)) &&
+                        (column >= alien2_x) && (column < (alien2_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien2_y][column - alien2_x] );
+                            vga_g <= (sprite_alien[row - alien2_y][column - alien2_x] );
+                            vga_b <= (sprite_alien[row - alien2_y][column - alien2_x] );
+        
+                    end 
+             end
+             
+             if(reg_sprite_display[2] == 1) begin       
+                if ((row >= alien3_y) && (row < (alien3_y + 20)) &&
+                        (column >= alien3_x) && (column < (alien3_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien3_y][column - alien3_x] );
+                            vga_g <= (sprite_alien[row - alien3_y][column - alien3_x] );
+                            vga_b <= (sprite_alien[row - alien3_y][column - alien3_x] );
+        
+                    end  
+             end
+             
+             if(reg_sprite_display[5] == 1) begin       
+                if ((row >= alien4_y) && (row < (alien4_y + 20)) &&
+                        (column >= alien4_x) && (column < (alien4_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien4_y][column - alien4_x] );
+                            vga_g <= (sprite_alien[row - alien4_y][column - alien4_x] );
+                            vga_b <= (sprite_alien[row - alien4_y][column - alien4_x] );
+        
+                    end  
+             end
+             
+            if(reg_sprite_display[3] == 1) begin       
+                if ((row >= alien5_y) && (row < (alien5_y + 20)) &&
+                        (column >= alien5_x) && (column < (alien5_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien5_y][column - alien5_x] );
+                            vga_g <= (sprite_alien[row - alien5_y][column - alien5_x] );
+                            vga_b <= (sprite_alien[row - alien5_y][column - alien5_x] );
+        
+                    end  
+             end
+             
+            if(reg_sprite_display[4] == 1) begin       
+                if ((row >= alien6_y) && (row < (alien6_y + 20)) &&
+                        (column >= alien6_x) && (column < (alien6_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_alien[row - alien6_y][column - alien6_x] );
+                            vga_g <= (sprite_alien[row - alien6_y][column - alien6_x] );
+                            vga_b <= (sprite_alien[row - alien6_y][column - alien6_x] );
+        
+                    end  
+             end
+             
+             //if(reg_sprite_display[8] == 1) begin   
+                if ((row >= ship_y) && (row < (ship_y + 20)) &&
+                        (column >= reg_ship_x) && (column < (reg_ship_x + 20)))
+        
+                    begin
+                            vga_r <= (sprite_ship[row - ship_y][column - reg_ship_x] );
+                            vga_g <= (sprite_ship[row - ship_y][column - reg_ship_x] );
+                            vga_b <= (sprite_ship[row - ship_y][column - reg_ship_x] );
+        
+                    end          
+             
+             //if(reg_sprite_display[9] == 1) begin   
+                 if ((row >= reg_ship_bullet_y) && (row < (reg_ship_bullet_y + 5)) &&
+                        (column >= reg_ship_bullet_x) && (column < (reg_ship_bullet_x + 2)))
+        
+                    begin
+                            vga_r <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
+                            vga_g <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
+                            vga_b <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
+        
+                    end
+/*                  
+                  if ((row >= reg_alien_bullet_y) && (row < (reg_alien_bullet_y + 12)) &&
+                        (column >= reg_alien_bullet_x) && (column < (reg_alien_bullet_x + 4)))
+        
+                    begin
+                            vga_r <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+                            vga_g <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+                            vga_b <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
+        
+                    end
+*/                         
+             //end
+                    
+                else begin
+                    vga_r = 4'b0000;//{1'b0,v_dat[2:0]};
+                    vga_g = 4'b0000;//{1'b0,v_dat[5:3]};
+                    vga_b = 4'b0000;//{2'b0,v_dat[7:6]};
+                end    
             end
-     end   
-     
-     if(reg_sprite_display[1] == 1) begin    
-        if ((row >= alien2_y) && (row < (alien2_y + 20)) &&
-                (column >= alien2_x) && (column < (alien2_x + 20)))
-
-            begin
-                    vga_r <= (sprite_alien[row - alien2_y][column - alien2_x] );
-                    vga_g <= (sprite_alien[row - alien2_y][column - alien2_x] );
-                    vga_b <= (sprite_alien[row - alien2_y][column - alien2_x] );
-
-            end 
-     end
-     
-     if(reg_sprite_display[2] == 1) begin       
-        if ((row >= alien3_y) && (row < (alien3_y + 20)) &&
-                (column >= alien3_x) && (column < (alien3_x + 20)))
-
-            begin
-                    vga_r <= (sprite_alien[row - alien3_y][column - alien3_x] );
-                    vga_g <= (sprite_alien[row - alien3_y][column - alien3_x] );
-                    vga_b <= (sprite_alien[row - alien3_y][column - alien3_x] );
-
-            end  
-     end
-     
-     //if(reg_sprite_display[8] == 1) begin   
-        if ((row >= ship_y) && (row < (ship_y + 20)) &&
-                (column >= reg_ship_x) && (column < (reg_ship_x + 20)))
-
-            begin
-                    vga_r <= (sprite_ship[row - ship_y][column - reg_ship_x] );
-                    vga_g <= (sprite_ship[row - ship_y][column - reg_ship_x] );
-                    vga_b <= (sprite_ship[row - ship_y][column - reg_ship_x] );
-
-            end          
-     
-     //if(reg_sprite_display[9] == 1) begin   
-         if ((row >= reg_ship_bullet_y) && (row < (reg_ship_bullet_y + 5)) &&
-                (column >= reg_ship_bullet_x) && (column < (reg_ship_bullet_x + 2)))
-
-            begin
-                    vga_r <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
-                    vga_g <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
-                    vga_b <= (sprite_ship_bullet[row - reg_ship_bullet_y][column - reg_ship_bullet_x] );
-
-            end
-          
-          if ((row >= reg_alien_bullet_y) && (row < (reg_alien_bullet_y + 12)) &&
-                (column >= reg_alien_bullet_x) && (column < (reg_alien_bullet_x + 4)))
-
-            begin
-                    vga_r <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
-                    vga_g <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
-                    vga_b <= (sprite_alien_bullet[row - reg_alien_bullet_y][column - reg_alien_bullet_x] );
-
-            end     
-     //end
-            
-        else begin
-            vga_r = 4'b0000;//{1'b0,v_dat[2:0]};
-            vga_g = 4'b0000;//{1'b0,v_dat[5:3]};
-            vga_b = 4'b0000;//{2'b0,v_dat[7:6]};
-        end    
             
         end
         end

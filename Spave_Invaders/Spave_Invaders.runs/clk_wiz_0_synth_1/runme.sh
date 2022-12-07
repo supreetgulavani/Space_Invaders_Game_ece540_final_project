@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='N:/FPGA_540/Final Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/clk_wiz_0_synth_1'
+HD_PWD='N:/FPGA_540/Final_Project/ece540_final_project/Spave_Invaders/Spave_Invaders.runs/clk_wiz_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
